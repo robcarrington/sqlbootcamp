@@ -4,7 +4,7 @@
 
 *Step 1:* Start DBeaver. On the first screen, select Postgres.
 
-![First screen](https://user-images.githubusercontent.com/5863947/58209899-fbfb8380-7cb5-11e9-9403-f67e3cd2e654.png)
+![First screen](https://user-images.githubusercontent.com/5863947/58212727-d07c9700-7cbd-11e9-88e9-02f6e9178271.png)
 
 *Step 2:* On the second screen, enter the following:
 
@@ -16,4 +16,4 @@ User: student
 
 Password: [This is secret! Come ask me.]
 
-![Second screen](https://user-images.githubusercontent.com/5863947/58209898-fbfb8380-7cb5-11e9-80a5-b78ee7a731e3.png)
+![Second screen](https://user-images.githubusercontent.com/5863947/58212730-d2465a80-7cbd-11e9-8c29-6bb925ff320b.png)
