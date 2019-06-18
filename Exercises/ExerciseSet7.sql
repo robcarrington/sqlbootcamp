@@ -27,18 +27,19 @@
 
 -- 1. Join the purchases and purchase_items tables, on purchases.id and purchase_items.purchase_id
 
--- 2. Modify the last query, aliasing purchases as p and purchase_items as p2.
+-- 2. Modify the last query, aliasing purchases as p and purchase_items as pi.
 
 -- 3. Using the same join, perform a group by to sum the total quantity of items purchased under each user_id.
 
 -- 4. Using the same join, find the average purchase amount from each state.
 
--- 5. Join the purchases and users tables, then filter to just users with AOL email addresses. 
+-- 5. Join the purchases and users tables, using an alias for each table.
 
--- 6. 
+-- 6. Using the above join, filter to just the orders with an AOL email address OR a buyer named 'Clay'
 
 ----------------------------------------
 -- EXTRA CREDIT: If you finish early. --
 ----------------------------------------
 
--- 1. 
+-- 1. Joins can combine more than two tables. Join the users table, purchases table, 
+--    and purchase items table. Remember to use aliases.
