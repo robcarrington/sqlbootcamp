@@ -1,4 +1,4 @@
--- EXERCISE SET #6: INNER JOINS AND ALIASES
+-- EXERCISE SET #10: VIEWS and FUNCTIONS
 
 -----------
 -- TIPS: --
@@ -12,24 +12,42 @@
 -- WARM UPS: Type the following commands to build muscle memory. --
 -------------------------------------------------------------------
 
--- 1. [Join]: select name, email from purchases join users on purchases.user_id = users.id
+-- 1. [View]: CREATE VIEW aolUsers AS
+--            SELECT * FROM users WHERE email like '%aol.com';
 
--- 2. [Same join using aliases]: select name, email from users as u 
---                               join purchases as p on p.user_id=u.id
+-- 2. [Function]: CREATE OR REPLACE FUNCTION userEmail (user_id numeric)
+--                RETURNS text AS $result$
+--                DECLARE
+--             	  result text;
+--                BEGIN
+--                SELECT email into result FROM users;
+--                RETURN result;
+--                END;
+--                $result$ LANGUAGE plpgsql;
 
--- 3. [Using alias in filter]: select name, email from users as u 
---                             join purchase_items as p on p.user_id=u.id 
---                             where u.email like '%aol.com'
-
--------------------------------------------------------------------
+--------------------------------------------------------
 -- EXERCISES: Answer using the techniques from above. --
--------------------------------------------------------------------
+--------------------------------------------------------
 
--- 1. Join the purchases and products tables.
+-- 1. Join the purchases and purchase_items tables. Do a group by to
+--    find out how much money each user has spent in total.
 
--- 2. Join the purchases and users tables, then filter to just the ZIP codes 
--- where users with AOL email addresses have made purchases.
+-- 2. Store the previous query as a view.
 
--- 3. Join the purchases and purchase_items tables, then perform a group by to find the sum of each customers' purchases.
+-- 3. Using your new view, write a function that takes a user_id and returns 
+--    how much money that user has spent.
 
--- 4. Using the same join, find the average purchase amount from each state.
+-- 4. Join the purchase_items and purchases tables. Do a group by to find the 
+--    total amount of money spent on each product.
+
+-- 5. Store the previous query as a view.
+
+-- 6. Write a function, using the new view, which will take a product_id and 
+---   return the total amount of money spend on that product.
+
+----------------------------------------
+-- EXTRA CREDIT: If you finish early. --
+----------------------------------------
+
+-- 1. Write a function that will, given a product_id, return the email address of
+--    the user who purchased it most recently.

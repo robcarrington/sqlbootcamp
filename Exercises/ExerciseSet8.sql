@@ -1,4 +1,4 @@
--- EXERCISE SET #6: INNER JOINS AND ALIASES
+-- EXERCISE SET #8: Review
 
 -----------
 -- TIPS: --
@@ -12,24 +12,39 @@
 -- WARM UPS: Type the following commands to build muscle memory. --
 -------------------------------------------------------------------
 
--- 1. [Join]: select name, email from purchases join users on purchases.user_id = users.id
+-- 1. [Subquery]: select * from purchase_items 
+--                where price = (select min(price) from products)
 
--- 2. [Same join using aliases]: select name, email from users as u 
---                               join purchases as p on p.user_id=u.id
+-- 2. [Join using aliases]: select name, email from users as u 
+--                          join purchases as p on p.user_id=u.id
 
--- 3. [Using alias in filter]: select name, email from users as u 
---                             join purchase_items as p on p.user_id=u.id 
---                             where u.email like '%aol.com'
+-- 3. [Conditional]: select title, 
+--	                   case when (price < 100) 
+--	                   then 'cheap'
+--	                   else 'expensive'
+--	                 end from products;
 
--------------------------------------------------------------------
+--------------------------------------------------------
 -- EXERCISES: Answer using the techniques from above. --
--------------------------------------------------------------------
+--------------------------------------------------------
 
--- 1. Join the purchases and products tables.
+-- 1. Find the rows from purchase_items with an above average quantity.
 
--- 2. Join the purchases and users tables, then filter to just the ZIP codes 
--- where users with AOL email addresses have made purchases.
+-- 2. Join the purchases and purchase_items tables, using aliases.
 
--- 3. Join the purchases and purchase_items tables, then perform a group by to find the sum of each customers' purchases.
+-- 3. Using the same join, group by to find when the first recorded purchase occurred in each state.
 
--- 4. Using the same join, find the average purchase amount from each state.
+-- 4. Find the most recent purchase made by a user with Yahoo email address.
+
+-- 5. Write a conditional that will categorize each purchase as 'West Coast' (if it 
+--    was ordered from CA, OR, or WA) or 'Other'
+
+-- 6. Use the purchase_items table to find all the purchase_ids that involved at least
+--    one product with the tags '{Technology}'
+
+----------------------------------------
+-- EXTRA CREDIT: If you finish early. --
+----------------------------------------
+
+-- 1. Solve the last problem from the exercises using a join instead, between the 
+--    products and purchase items tables. 

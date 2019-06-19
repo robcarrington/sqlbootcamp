@@ -1,4 +1,4 @@
--- EXERCISE SET #6: INNER JOINS AND ALIASES
+-- EXERCISE SET #9: Modifying Tables
 
 -----------
 -- TIPS: --
@@ -12,24 +12,38 @@
 -- WARM UPS: Type the following commands to build muscle memory. --
 -------------------------------------------------------------------
 
--- 1. [Join]: select name, email from purchases join users on purchases.user_id = users.id
+-- 1. [Replace]: SELECT REPLACE(title, 'TV', 'Television') FROM products;
 
--- 2. [Same join using aliases]: select name, email from users as u 
---                               join purchases as p on p.user_id=u.id
+-- 2. [Insert]: INSERT INTO products VALUES (21, 'Fiction Book', 12, NOW(), null, '{Book}');           
 
--- 3. [Using alias in filter]: select name, email from users as u 
---                             join purchase_items as p on p.user_id=u.id 
---                             where u.email like '%aol.com'
+-- 3. [Update]: UPDATE products SET title = 'New Book', tags = '{Technology, Book}' 
+--              WHERE title='Fiction Book';
 
--------------------------------------------------------------------
+-- 4. [Commit]: BEGIN; INSERT INTO products VALUES (22, 'Non-Fiction Book', 13, NOW(), null, '{Book}'); COMMIT; 
+
+-- 5. [Rollback]: BEGIN; UPDATE products SET title = 'Big Mistake'; ROLLBACK;
+
+--------------------------------------------------------
 -- EXERCISES: Answer using the techniques from above. --
--------------------------------------------------------------------
+--------------------------------------------------------
 
--- 1. Join the purchases and products tables.
+-- 1. Add yourself to the users table. You can leave the password and details blank (null).
 
--- 2. Join the purchases and users tables, then filter to just the ZIP codes 
--- where users with AOL email addresses have made purchases.
+-- 2. To practice cleaning data in SQL, let's say Yahoo e-mail addresses are switching to Verizon.
+--    First, SELECT all the Yahoo email addresses in the users table.
 
--- 3. Join the purchases and purchase_items tables, then perform a group by to find the sum of each customers' purchases.
+-- 3. Using the WHERE clause from the last question, do an UPDATE setting the 'email' column 
+--    to the new Verizon version using REPLACE(). Remember to use transactions when doing an UPDATE.
 
--- 4. Using the same join, find the average purchase amount from each state.
+-- 4. For more practice, let's say the CDs are being replaced by playlists. First, select all the 
+--    products that contain the word CD in them.
+
+-- 3. Using the WHERE clause from the last question, do an UPDATE setting the 'title' column 
+--    to the new version substituting 'playlist' for CD. Remember to use transactions when doing an UPDATE.
+
+----------------------------------------
+-- EXTRA CREDIT: If you finish early. --
+----------------------------------------
+
+-- 1. The CAST() function will convert values across different data types, e.g. CAST(price as int).
+--    Clean up the price column of the products table by converting the values to the type money.
