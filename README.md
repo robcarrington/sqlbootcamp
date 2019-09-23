@@ -10,7 +10,7 @@
 
 *Host*: sqlbootcamp.cimmsxploxbp.us-east-2.rds.amazonaws.com
 
-*Database*: [Put your first initial and last name here]
+*Database*: example_database
 
 *User*: student
 
