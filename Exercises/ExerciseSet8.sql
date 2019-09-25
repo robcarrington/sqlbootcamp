@@ -39,12 +39,5 @@
 -- 5. Write a conditional that will categorize each purchase as 'West Coast' (if it 
 --    was ordered from CA, OR, or WA) or 'Other'
 
--- 6. Use the purchase_items table to find all the purchase_ids that involved at least
---    one product with the tags '{Technology}'
-
-----------------------------------------
--- EXTRA CREDIT: If you finish early. --
-----------------------------------------
-
--- 1. Solve the last problem from the exercises using a join instead, between the 
---    products and purchase items tables. 
+-- 6. Use a join between the products and purchase_items table to find 
+--    all the purchase_ids involving a product tagged '{Technology}'
