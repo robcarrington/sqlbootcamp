@@ -1,4 +1,4 @@
--- EXERCISE SET #9: Modifying Tables
+-- EXERCISE SET #9: Transactions and Inserts
 
 -----------
 -- TIPS: --
@@ -12,16 +12,13 @@
 -- WARM UPS: Type the following commands to build muscle memory. --
 -------------------------------------------------------------------
 
--- 1. [Replace]: SELECT REPLACE(title, 'TV', 'Television') FROM products;
+-- 1. [Begin Transaction]: BEGIN;
 
--- 2. [Insert]: INSERT INTO products VALUES (21, 'Fiction Book', 12, NOW(), null, '{Book}');           
+-- 2. [Insert]: INSERT INTO products VALUES (29, 'Fiction Book', 12, NOW(), null, '{Book}');           
 
--- 3. [Update]: UPDATE products SET title = 'New Book', tags = '{Technology, Book}' 
---              WHERE title='Fiction Book';
+-- 3. [Save Transaction]: COMMIT; 
 
--- 4. [Commit]: BEGIN; INSERT INTO products VALUES (22, 'Non-Fiction Book', 13, NOW(), null, '{Book}'); COMMIT; 
-
--- 5. [Rollback]: BEGIN; UPDATE products SET title = 'Big Mistake'; ROLLBACK;
+-- 4. [Undo Transaction]: ROLLBACK;
 
 --------------------------------------------------------
 -- EXERCISES: Answer using the techniques from above. --
@@ -29,17 +26,13 @@
 
 -- 1. Add yourself to the users table. You can leave the password and details blank (null).
 
--- 2. To practice cleaning data in SQL, let's say Yahoo e-mail addresses are switching to Verizon.
---    First, SELECT all the Yahoo email addresses in the users table.
+-- 2. Add a new row to the purchases table, using your user_id as a foreign key.
 
--- 3. Using the WHERE clause from the last question, do an UPDATE setting the 'email' column 
---    to the new Verizon version using REPLACE(). Remember to use transactions when doing an UPDATE.
+-- 3. You can specify a subset of columns after INSERT INTO,  e.g. INSERT INTO users (id, email) VALUES (1, 'bob@gmail.com');
+--    Use this syntax to insert a new product into the products table.
 
--- 4. For more practice, let's say the CDs are being replaced by playlists. First, select all the 
---    products that contain the word CD in them.
-
--- 3. Using the WHERE clause from the last question, do an UPDATE setting the 'title' column 
---    to the new version substituting 'playlist' for CD. Remember to use transactions when doing an UPDATE.
+-- 4. Well-designed tables will auto-increment the id column. 
+--    Insert into the users table, but use the new syntax to leave off the id column
 
 ----------------------------------------
 -- EXTRA CREDIT: If you finish early. --

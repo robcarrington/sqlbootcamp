@@ -1,4 +1,4 @@
--- EXERCISE SET #10: VIEWS 
+-- EXERCISE SET #10: Modifying Tables
 
 -----------
 -- TIPS: --
@@ -12,25 +12,23 @@
 -- WARM UPS: Type the following commands to build muscle memory. --
 -------------------------------------------------------------------
 
--- 1. [View]: CREATE VIEW aolUsers AS
---            SELECT * FROM users WHERE email like '%aol.com';
+-- 1. [Replace]: SELECT REPLACE(title, 'TV', 'Television') FROM products;
+
+-- 2. [Update]: UPDATE products SET title = 'New Book', tags = '{Technology, Book}' 
+--              WHERE title='Fiction Book';
 
 --------------------------------------------------------
 -- EXERCISES: Answer using the techniques from above. --
 --------------------------------------------------------
 
--- 1. Join the purchases and purchase_items tables. Do a group by to
---    find out how much money each user has spent in total.
+-- 1. To practice cleaning data in SQL, let's say Yahoo e-mail addresses are switching to Verizon.
+--    First, SELECT all the Yahoo email addresses in the users table.
 
--- 2. Store the joined table as a view, leaving out any duplicate columns.
+-- 2. Using the WHERE clause from the last question, do an UPDATE setting the 'email' column 
+--    to the new Verizon version using REPLACE(). Remember to use transactions when doing an UPDATE.
 
--- 3. Rewrite the groupby query using the view instead.
+-- 3. For more practice, let's say the CDs are being replaced by playlists. First, select all the 
+--    products that contain the word CD in them.
 
--- 4. Join the purchase_items and purchases tables. Do a group by to find the 
---    total amount of money spent on each product.
-
--- 5. Store the joined table as a view, leaving out any duplicate columns.
-
--- 6. Rewrite the groupby query to use the view instead.
-
-
+-- 4. Using the WHERE clause from the last question, do an UPDATE setting the 'title' column 
+--    to the new version substituting 'playlist' for CD. Remember to use transactions when doing an UPDATE.
