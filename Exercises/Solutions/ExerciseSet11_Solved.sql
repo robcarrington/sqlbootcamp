@@ -28,9 +28,23 @@
 -- 1. Join the purchases and purchase_items tables. Do a group by to
 --    find out how much money each user has spent in total.
 
+select user_id, sum(price * quantity) as totalSpent
+from purchases p join purchase_items pi
+on p.id = pi.purchase_id
+group by user_id;
+
 -- 2. Store the joined table as a view.
 
+create view userTotals as
+select *
+from purchases p join purchase_items pi
+on p.id = pi.purchase_id;
+
+
 -- 3. Rewrite the groupby query using the view instead.
+
+select user_id, sum(price * quantity) from userTotals
+group by user_id;
 
 -- 4. Create a new table 'coupons' with the follwing columns:
 --    * id (serial, primary key)
@@ -38,6 +52,11 @@
 --    * code (varchar (10), not null)
 --    * percent (float32, not null)
 
-
+CREATE TABLE coupons (
+	id SERIAL PRIMARY KEY,
+	name VARCHAR (200),
+	code VARCHAR (10) NOT NULL,
+	percent (float32, NOT NULL)
+	);
 
 

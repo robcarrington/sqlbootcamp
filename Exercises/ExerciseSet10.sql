@@ -14,15 +14,16 @@
 
 -- 1. [Replace]: SELECT REPLACE(title, 'TV', 'Television') FROM products;
 
--- 2. [Update]: UPDATE products SET title = 'New Book', tags = '{Technology, Book}' 
---              WHERE title='Fiction Book';
+-- 2. [Update]: UPDATE products 
+--              SET title = 'New Book'
+--              WHERE title = 'Fiction Book';
 
 --------------------------------------------------------
 -- EXERCISES: Answer using the techniques from above. --
 --------------------------------------------------------
 
--- 1. To practice cleaning data in SQL, let's say Yahoo e-mail addresses are switching to Verizon.
---    First, SELECT all the Yahoo email addresses in the users table.
+-- 1. To practice cleaning data in SQL, let's say AOL e-mail addresses are switching to Verizon.
+--    First, SELECT all the AOL email addresses in the users table.
 
 -- 2. Using the WHERE clause from the last question, do an UPDATE setting the 'email' column 
 --    to the new Verizon version using REPLACE(). Remember to use transactions when doing an UPDATE.
