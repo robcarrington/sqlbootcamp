@@ -24,6 +24,12 @@
 
 -- 1. Select the products that cost more than average.
 
+select * from products where price = (select avg(price) from products);
+
 -- 2. Find all the purchase_items that represent orders for the lowest-priced product.
 
+select * from purchase_items where price = (select min(price) from products)
+
 -- 3. Find the most recent purchase made by a user with Gmail email address.
+
+select * from purchases where user_id in (select id from users where email like '%gmail.com');

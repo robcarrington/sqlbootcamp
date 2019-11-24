@@ -1,4 +1,4 @@
--- EXERCISE SET #5: GROUP BY STATEMENTS
+-- EXERCISE SET #5: Review
 
 -----------
 -- TIPS: --
@@ -12,28 +12,45 @@
 -- WARM UPS: Type the following commands to build muscle memory. --
 -------------------------------------------------------------------
 
--- 1. [Grouping by one column]: select state, count(id) from purchases group by state;
+-- 1. [Distinct values in column]: SELECT DISTINCT price FROM products;
 
--- 2. [Grouping by multiple columns]: select state, zipcode, count(id) from purchases group by state, zipcode;
+-- 2. [Filter using set of values]: SELECT * FROM products WHERE price IN (5.99, 9.99);
 
--- 3. [Group by using a HAVING filter]: select state, count(id) from purchases group by state having count(id) > 100;
+-- 3. [Filter with wildcard]: SELECT * FROM products WHERE title LIKE '%Book%;
 
--------------------------------------------------------------------
+-- 4. [Less-than filter and order by]: SELECT * FROM products WHERE price < 10 ORDER BY price DESC;
+
+-- 5. [Using a group by]: SELECT tags, avg(price) FROM products group by tags;
+
+--------------------------------------------------------
 -- EXERCISES: Answer using the techniques from above. --
--------------------------------------------------------------------
+--------------------------------------------------------
 
--- 1. Use the purchase_items table to see the dollar amount of items in each state: Delivered, Returned, Pending
+-- 1. Find how many distinct sets of tags there are in the products table.
 
-select state, sum(price) from purchase_items group by state
+select distinct tags from products;
 
--- 2. Find how many products are under each set of tags
+-- 2. Find all the rows of purchases made from either Virginia (VA) or Wisconsin (WI).
 
-select tags, count(price) from products group by tags
+select * from purchases where state in ('VA', 'WI');
 
--- 3. Use the user table to find out how many purchases each user made.
+-- 3. Find all the rows of the purchases made by people with the first name of "Johnathan".
 
-select user_id, count(id) from purchases group by user_id
+select * from purchases where name like 'Johnathan %';
 
--- 4. Find all the users that made over 25 purchases
+-- 4. How many purchases were made by people whose last name starts with an 'A'?
 
-select user_id, count(id) from purchases group by user_id having count(id) > 25
+select * from purchases where name like '% A%';
+
+-- 5. Find the most recent purchase made within each state.
+
+select state, min(created_at) from purchases group by state;
+
+----------------------------------------
+-- EXTRA CREDIT: If you finish early. --
+----------------------------------------
+
+-- 1. Use the DATE_PART() function to find the number of users created during each day of the week.
+--    Hint: Use 'dow' as the first input, which stand for "day of the week"	
+
+select date_part('dow', created_at) as "day of week", count(*) from users group by "day of week"

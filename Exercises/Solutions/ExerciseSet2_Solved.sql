@@ -12,22 +12,55 @@
 -- WARM UPS: Type the following commands to build muscle memory. --
 -------------------------------------------------------------------
 
--- 1. [Filter by exact value]: select * from products where price = 9.99;
+-- 1. [Filter by exact value]: SELECT * FROM products WHERE price = 9.99;
 
--- 2. [Filter using less-than]: select * from products where price < 10;
+-- 2. [Filter using less-than]: SELECT * FROM products WHERE price < 10;
 
--- 3. [Filter using greater-or-equals]: select * from products where price >= 10;
+-- 3. [Filter using greater-or-equals]: SELECT * FROM products WHERE price >= 10;
 
--- 4. [Filter using set of values]: select * from products where price in (5.99, 9.99);
+-- 4. [Filter using set of values]: SELECT * FROM products WHERE price IN (5.99, 9.99);
 
--------------------------------------------------------------------
+--------------------------------------------------------
 -- EXERCISES: Answer using the techniques from above. --
--------------------------------------------------------------------
+--------------------------------------------------------
 
 -- 1. Find all the rows from the purchases table with user_id 36.
 
+select * from purchases where user_id = 36;
+
 -- 2. Select * from purchase_items where someone ordered a quantity of 3 or more.
 
--- 3. Select the rows from purchase_items with a price of 300 or more.
+select * from purchase_items where quantity >= 3;
 
--- 4. Find the purchases that were made from zipcode 99652 or 71938.
+-- 3. Select the rows from purchase_items with a price less than $300.
+
+select * from purchase_items where price < 300;
+
+-- 4. Select the rows from purchase_items with a price of 300 or more,
+--    ordered by most expensive first.
+
+select * from purchase_items where price > 300 order by price desc;
+
+-- 5. Add a LIMIT clause to just see the top 3 most expensive purchase_items.
+
+select * from purchase_items order by price desc;
+
+-- 6. Find the purchases that were made from zipcode 99652 or 71938.
+
+select * from purchases where zipcode in (99652, 71938);
+
+-- 7. Modify the last query to find the DISTINCT names of the people who made the purchases.
+
+select distinct name from purchases;
+
+----------------------------------------
+-- EXTRA CREDIT: If you finish early. --
+----------------------------------------
+
+-- 1. View the five most recent purchases made by user_id 24.
+
+select * from purchases where user_id = 24;
+
+-- 2. Use DISTINCT to find out which states user_id 24 has made purchases from.
+
+select distinct state from purchases where user_id = 24;
