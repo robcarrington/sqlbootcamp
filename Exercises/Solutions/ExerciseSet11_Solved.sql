@@ -56,7 +56,7 @@ CREATE TABLE coupons (
 	id SERIAL PRIMARY KEY,
 	name VARCHAR (200),
 	code VARCHAR (10) NOT NULL,
-	percent (float32, NOT NULL)
+	percent FLOAT (32) NOT NULL
 	);
 
 
