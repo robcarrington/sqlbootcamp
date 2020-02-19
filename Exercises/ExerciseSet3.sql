@@ -24,7 +24,7 @@
 -- EXERCISES: Answer using the techniques from above. --
 --------------------------------------------------------
 
--- 1. Find all the users whose email address is hosted by AOL.
+-- 1. Find all the users whose email address is hosted by GMail.
 
 -- 2. Find all the purchases made in Florida or Texas.
 

@@ -1,4 +1,4 @@
--- EXERCISE SET #4: AGGREGATION FUNCTIONS
+-- EXERCISE SET #4: SUBQUERIES AND UNIONS
 
 -----------
 -- TIPS: --
@@ -12,36 +12,26 @@
 -- WARM UPS: Type the following commands to build muscle memory. --
 -------------------------------------------------------------------
 
--- 1. [Using max/min]: SELECT max(price) FROM products;
+-- 1. [Single-value subquery]: select * from purchase_items 
+--                             where price = (select max(price) from products)
 
--- 2. [Using count]: SELECT count(*) FROM users;
+-- 2. [Multiple-value subquery]: select * from purchases where user_id in 
+--                               (select user_id from users where email like '%@aol.com')
 
--- 3. [Using sum]: SELECT sum(price) FROM purchase_items;
-
--- 4. [Using avg]: SELECT avg(*) FROM products;
+-- 3. [Union]: select id from purchases
+--             union
+--             select id from users;
 
 --------------------------------------------------------
 -- EXERCISES: Answer using the techniques from above. --
 --------------------------------------------------------
 
--- 1. Find the total number of purchases.
+-- 1. Select the products that cost more than average.
 
--- 2. Find the average price of the items in the products table.
+-- 2. Find all the purchase_items that represent orders for the lowest-priced product.
 
--- 3. Find the maximum price from the products that are NOT a computer.
+-- 3. Find the most recent purchase made by a user with Gmail email address.
 
--- 4. Find the number of users with Gmail email addresses.
+-- 4. Write a query that will combine all emails (from users table) and all addresses (from purchases).
 
--- 5. Using the purchase_items table, find the total dollar value of all items with state "Returned".
-
--- 6. Find the average price of all products containing the word "Book" in their title.
-
-----------------------------------------
--- EXTRA CREDIT: If you finish early. --
-----------------------------------------
-
--- 1. You use multiple aggregation functions in one SELECT. Using only one query,
---    find the min(), max() and avg() of the prices in the product table.
-
--- 2. In one query, find the difference between the price of the most expensive
---    and least expensive product. 
+-- 5. Combine all the times when users were created and purchases were made.

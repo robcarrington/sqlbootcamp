@@ -1,4 +1,4 @@
--- EXERCISE SET #2: NUMERIC FILTERS
+-- EXERCISE SET #2: USING NUMERIC AND DATE COLUMNS
 
 -----------
 -- TIPS: --
@@ -39,10 +39,12 @@
 
 -- 7. Modify the last query to find the DISTINCT names of the people who made the purchases.
 
+-- 8. Find all the purchases made on March 22, 2011.
+
+-- 9. Find all the purchases made during either May or June of 2011.
+
 ----------------------------------------
 -- EXTRA CREDIT: If you finish early. --
 ----------------------------------------
 
--- 1. View the five most recent purchases made by user_id 24.
-
--- 2. Use DISTINCT to find out which states user_id 24 has made purchases from.
+-- 1. Find the DISTINCT states that user_id 24 has made purchases from.
