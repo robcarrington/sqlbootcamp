@@ -16,7 +16,7 @@
 --                             where price = (select max(price) from products)
 
 -- 2. [Multiple-value subquery]: select * from purchases where user_id in 
---                               (select user_id from users where email like '%@aol.com')
+--                               (select user_id from users where email like '%@gmail.com')
 
 -- 3. [Union]: select id from purchases
 --             union

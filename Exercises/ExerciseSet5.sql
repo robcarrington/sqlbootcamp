@@ -14,16 +14,16 @@
 
 -- 1. [Inner Join]: SELECT name, email 
 --                  FROM purchases INNER JOIN users 
---                  ON purchases.user_id = users.id
+--                  ON purchases.user_id = users.id;
 
 
 -- 2. [Same join using aliases]: SELECT name, email 
---                               FROM users as u 
---                               join purchases as p on p.user_id=u.id
+--                               FROM users AS u join purchases AS p
+--                               ON u.id = p.user_id;
 
 -- 3. [Left Outer Join]: SELECT name, email 
 --						 FROM users JOIN purchase_items
---                       ON users.id = user_id=u.id; 
+--                       ON users.id = purchase_items.user_id; 
 
 --------------------------------------------------------
 -- EXERCISES: Answer using the techniques from above. --
@@ -33,11 +33,11 @@
 -- on lead_user_sessions.id and lead_user_responses.session_id
 
 
--- 2. Modify the last query, aliasing lead_user_sessions as s and lead_user_responses as 3.
+-- 2. Modify the last query, aliasing lead_user_sessions as s and lead_user_responses as r.
 
 
 -- 3. Using the same join, filter to just rows where 
---    utm_source is 'facebook' and questionKey is 'yearsFromRetirement'
+--    utm_source is 'facebook' and questionKey is 'years_from_retirement'
 
 
 -- 4. LEFT OUTER JOIN the lead_user_sessions and lead_users tables.
@@ -46,7 +46,7 @@
 -- 5. Rewrite the above query using aliases.
 
 
--- 6. Filter to just the rows with crm_status of 'Valid' and funnel_completion_date of Oct 10, 2019.
+-- 6. Filter to just the rows with crm_status of 'Valid' and funnel_completion_date of Oct 31, 2019.
 
 
 ----------------------------------------
