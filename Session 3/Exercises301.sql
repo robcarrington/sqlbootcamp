@@ -1,4 +1,4 @@
--- EXERCISE SET #301: Review
+-- EXERCISE SET 301: Review
 
 -----------
 -- TIPS: --
@@ -20,8 +20,6 @@
 
 -- 4. [Less-than filter and order by]: SELECT * FROM products WHERE price < 10 ORDER BY price DESC;
 
--- 5. [Using a group by]: SELECT tags, avg(price) FROM products group by tags;
-
 --------------------------------------------------------
 -- EXERCISES: Answer using the techniques from above. --
 --------------------------------------------------------
@@ -34,11 +32,16 @@
 
 -- 4. How many purchases were made by people whose last name starts with an 'A'?
 
--- 5. Find the most recent purchase made within each state.
+-- 5. How many products cost between $10 and 30?
+
+-- 6. What is the average price among Returned items, from the purchase_items table?
 
 ----------------------------------------
 -- EXTRA CREDIT: If you finish early. --
 ----------------------------------------
 
--- 1. Use the DATE_PART() function to find the number of users created during each day of the week.
---    Hint: Use 'dow' as the first input, which stand for "day of the week"	
+-- 1. You can use the numeric comparison operators (eg. =, >, <) between timestamp columns 
+--    and strings in ISO format (eg. '2009-10-02'). Find all the users created since new years 2009.
+
+-- 2. You can use the DATE() function to convert a timestamp column to a date. 
+--    Find all the users created on 2019-10-12.

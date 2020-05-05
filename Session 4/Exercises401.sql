@@ -1,4 +1,4 @@
--- EXERCISE SET 401: SUBQUERIES
+-- EXERCISE SET 401: Subqueries
 
 -----------
 -- TIPS: --
@@ -27,3 +27,6 @@
 -- 2. Find all the purchase_items that represent orders for the lowest-priced product.
 
 -- 3. Find the most recent purchase made by a user with Gmail email address.
+
+-- 4. List the titles of the products that were ever returned in quantities greater than 4.
+

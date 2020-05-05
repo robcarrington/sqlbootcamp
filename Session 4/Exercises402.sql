@@ -1,4 +1,4 @@
--- EXERCISE SET 402: INNER JOINS AND ALIASES
+-- EXERCISE SET 402: Inner Joins and Aliases
 
 -----------
 -- TIPS: --

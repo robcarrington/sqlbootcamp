@@ -1,4 +1,4 @@
--- EXERCISE SET 401: SUBQUERIES
+-- EXERCISE SET 401: Subqueries
 
 -----------
 -- TIPS: --
@@ -24,12 +24,21 @@
 
 -- 1. Select the products that cost more than average.
 
-select * from products where price = (select avg(price) from products);
+SELECT * FROM products 
+WHERE price = (SELECT AVG(price) FROM products);
 
 -- 2. Find all the purchase_items that represent orders for the lowest-priced product.
 
-select * from purchase_items where price = (select min(price) from products)
+SELECT * FROM purchase_items 
+WHERE price = (SELECT MIN(price) FROM products)
 
 -- 3. Find the most recent purchase made by a user with Gmail email address.
 
-select * from purchases where user_id in (select id from users where email like '%gmail.com');
+SELECT * FROM purchases 
+WHERE user_id IN (SELECT id FROM users WHERE email ILIKE '%gmail.com');
+
+-- 4. List the titles of the products that were ever returned in quantities greater than 4.
+
+SELECT * FROM products WHERE id IN 
+(SELECT product_id FROM purchase_items WHERE quantity > 5 AND state = 'Returned');
+
