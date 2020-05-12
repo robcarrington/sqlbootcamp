@@ -1,4 +1,4 @@
--- EXERCISE SET #501: Review
+-- EXERCISE SET 501: Inner and Outer Joins
 
 -----------
 -- TIPS: --
@@ -12,63 +12,76 @@
 -- WARM UPS: Type the following commands to build muscle memory. --
 -------------------------------------------------------------------
 
--- 1. [Subquery]: select * from purchase_items 
---                where price = (select min(price) from products)
+-- 1. [Inner Join]: SELECT *
+--                  FROM users AS u 
+--                  JOIN purchases AS p 
+--                  ON p.user_id=u.id;
 
--- 2. [Join using aliases]: select name, email from users as u 
---                          join purchases as p on p.user_id=u.id
+-- 2. [Left Join]: SELECT *
+--                 FROM users AS u 
+--                 LEFT JOIN purchases AS p 
+--                 ON p.user_id=u.id;
 
--- 3. [Conditional]: select title, 
---	                   case when (price < 100) 
---	                   then 'cheap'
---	                   else 'expensive'
---	                 end from products;
+-- 3. [Finding NULLS]: SELECT *
+--                     FROM users AS u 
+--                     WHERE details IS NULL;
 
 --------------------------------------------------------
 -- EXERCISES: Answer using the techniques from above. --
 --------------------------------------------------------
 
--- 1. Find the rows from purchase_items with an above average quantity.
+-- 1. First, join the products table to the purchase_items 
+--    table. Choose a join that will KEEP products even
+--    if they don't have any associated purchase_items.
 
-select * from purchase_items where quantity > 
-(select avg(quantity) from purchase_items);
+SELECT *
+FROM products pr
+JOIN purchase_items pu
+ON pr.id = pu.product_id;
 
--- 2. Join the purchases and purchase_items tables, using aliases.
+-- 2. Were there any products with no purchase? 
+--    Query the joined table for rows with NULL quantity. 
+SELECT *
+FROM products pr
+JOIN purchase_items pu
+ON pr.id = pu.product_id
+WHERE quantity is NULL;
 
-select * 
-from purchases p join purchase_items pi
-on p.id = pi.purchase_id;
+-- 3. Now add a groupby to find the average quantity that
+--    each product was purchased in.
 
--- 3. Using the same join, group by to find when the first recorded purchase occurred in each state.
+SELECT pr.id, AVG(quantity)
+FROM products pr
+JOIN purchase_items pu
+ON pr.id = pu.product_id
+GROUP BY pr.id;
 
-select state, min(p.created_at) 
-from purchases p join purchase_items pi
-on p.id = pi.purchase_id
-group by p.state;
+-- 4. Let's find the total number of items associated with each purchase 
+---   First, join the purchases and purchase_items table, so we have both purchase_id and quantity.
+--    Which kind of join is appropriate here?
 
--- 4. Find the most recent purchase made by a user with Yahoo email address.
+SELECT * 
+FROM purchases p 
+JOIN purchase_items pi
+ON p.id = pi.purchase_id;
 
-select * 
-from purchases join users
-on purchases.user_id = users.id
-where email like '%@yahoo.com'
-order by p.created_at limit 1
+-- 5. Now use a group by to find the total quantity for each purchase_id.
 
-
--- 5. Write a conditional that will categorize each purchase as 'West Coast' (if it 
---    was ordered from CA, OR, or WA) or 'Other'
-
-select state, case 
-	when (state in ('CA', 'OR', 'WA')) then 'West Coast'
-	else 'Other'
-	end
-from purchases;
+SELECT purchase_id, SUM(quantity) 
+FROM purchases p 
+JOIN purchase_items pi
+ON p.id = pi.purchase_id
+GROUP BY purchase_id;
 
 
--- 6. Use a join between the products and purchase_items table to find 
+----------------------------------------
+-- EXTRA CREDIT: If you finish early. --
+----------------------------------------
+
+-- 1. Use a join between the products and purchase_items table to find 
 --    all the purchase_ids involving a product tagged '{Technology}'
 
-select * 
-from products join purchase_items
-on proudcts.id = purchase_items.id
-where tags @> '{Technology}';
+SELECT * 
+FROM products JOIN purchase_items
+ON proudcts.id = purchase_items.id
+WHERE tags @> '{Technology}';

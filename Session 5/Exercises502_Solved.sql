@@ -1,4 +1,4 @@
--- EXERCISE SET 502: Transactions and Inserts
+-- EXERCISE SET 502: Unions and Conditionals
 
 -----------
 -- TIPS: --
@@ -12,41 +12,105 @@
 -- WARM UPS: Type the following commands to build muscle memory. --
 -------------------------------------------------------------------
 
--- 1. [Begin Transaction]: BEGIN;
+-- 1. [Union Join]: SELECT name, email FROM users
+--				    UNION
+--                  SELECT title, price FROM products;
 
--- 2. [Insert]: INSERT INTO products VALUES (29, 'Fiction Book', 12, NOW(), null, '{Book}');           
-
--- 3. [Save Transaction]: COMMIT; 
-
--- 4. [Undo Transaction]: ROLLBACK;
+-- 2. [Conditional]: SELECT title, 
+--	                   CASE WHEN (price < 100) 
+--	                   THEN 'cheap'
+--	                   ELSE 'expensive'
+--	                 END FROM products;
 
 --------------------------------------------------------
 -- EXERCISES: Answer using the techniques from above. --
 --------------------------------------------------------
 
--- 1. Add yourself to the users table. You can leave the password and details blank (null).
+-- 0. Select all the names associated with purchases made after 2010-01-01,
+--    and all the emails associated with users made after 2010-01-01.
 
-insert into users values (50, 'robcarrington@gmail.com', null, null, now(), null);
+SELECT created_at, email FROM users
+WHERE created_at > '2010-01-01'
+UNION 
+SELECT created_at, name FROM purchases
+WHERE created_at > '2010-01-01';
 
--- 2. Add a new row to the purchases table, using your user_id as a foreign key.
+-- 1. Write a conditional that will categorize each purchase as 'West Coast' (if it 
+--    was ordered from CA, OR, or WA) or 'Other'
 
-insert into purchases values (1001, now(), 'Rob Carrington', '1234 Fake St', 'CA', 94530, 50);
+SELECT state, CASE 
+	WHERE (state IN ('CA', 'OR', 'WA')) THEN 'West Coast'
+	ELSE 'Other'
+	END
+FROM purchases;
 
--- 3. You can specify a subset of columns after INSERT INTO,  e.g. INSERT INTO users (id, email) VALUES (1, 'bob@gmail.com');
---    Use this syntax to insert a new product into the products table.
+-- 2. Modify the last query with a group by statement, to find
+--    the number of purchases among West Coast states vs Others.
 
-insert into products (title, price, created_at, tags) values (29, 'Coloring Book', 4.99, now(), '{Book}');
+SELECT CASE 
+	WHERE (state IN ('CA', 'OR', 'WA')) THEN 'West Coast'
+	ELSE 'Other'
+	END AS coast, COUNT(*)
+FROM purchases
+GROUP BY coast;
 
--- 4. Well-designed tables will auto-increment the id column. 
---    Insert into the users table, but use the new syntax to leave off the id column
+-- 3. Write a conditional to divide users into three groups, based on their created_at: 
+--    early for before 2009-06-01, 
+--    majority for between 2009-06-01 and 2010-01-01
+--    late for after 2010-01-01
 
-insert into users (email, created_at) values ('robcarrington@gmail.com', now());
+SELECT CASE 
+	WHEN (created_at < '2009-06-01') THEN 'early'
+	WHEN (created_at < '2010-01-01') THEN 'majority'
+	ELSE 'late'
+	END AS user_type
+FROM users;
+
+-- 4. Modify the last query by adding a join against the purchases table.
+--    Note: Since created_at exists in both tables, you'll need to prefix 
+--    with the table name (e.g users.created_at)
+
+SELECT CASE 
+	WHEN (u.created_at < '2009-06-01') THEN 'early'
+	WHEN (u.created_at < '2010-01-01') THEN 'majority'
+	ELSE 'late'
+	END AS user_type
+FROM users AS u
+JOIN purchases AS p
+ON u.id = p.user_id;
+
+-- 5. Add a groupby statement to find which group of customers makes 
+--    more purchases on average: early, majority, or late.
+
+SELECT CASE WHEN (u.created_at < '2009-06-01') THEN 'early'
+	        WHEN (u.created_at < '2010-01-01') THEN 'majority'
+		    ELSE 'late'
+	   END AS user_type,
+	   COUNT(*)
+FROM users AS u
+JOIN purchases AS p
+ON u.id = p.user_id
+GROUP BY user_type;
 
 ----------------------------------------
 -- EXTRA CREDIT: If you finish early. --
 ----------------------------------------
 
--- 1. The CAST() function will convert values across different data types, e.g. CAST(price as int).
---    Clean up the price column of the products table by converting the values to the type money.
+-- 1. Use DATE_PART() and a conditional to categorize purchases as 'weekday' and 'weekend'.
+--    Hint: DATE_PART('dow', column) outputs day of week as a number with Sunday as 0, Saturday as 6.
 
-select title, cast(price as money) from products;
+SELECT CASE 
+	WHEN DATE_PART('dow', created_at) IN (0, 6) THEN 'weekend'
+	ELSE 'weekday'
+	END AS day_type
+FROM purchases;
+
+-- 2. Group by state and weekday/weekend to see the number of weekday/weekend purchases per state.
+
+SELECT state,
+    CASE WHEN DATE_PART('dow', created_at) IN (0, 6) THEN 'weekend'
+	ELSE 'weekday'
+	END AS day_type,
+	COUNT(*) 
+FROM purchases
+GROUP BY state, day_type;

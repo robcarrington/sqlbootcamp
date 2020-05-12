@@ -1,4 +1,4 @@
--- EXERCISE SET 503: Modifying Tables
+-- EXERCISE SET 602: Modifying Tables
 
 -----------
 -- TIPS: --
@@ -25,27 +25,27 @@
 -- 1. To practice cleaning data in SQL, let's say AOL e-mail addresses are switching to Verizon.
 --    First, SELECT all the AOL email addresses in the users table.
 
-select * from users where email like '%aol.com';
+SELECT * FROM users WHERE email LIKE '%aol.com';
 
 -- 2. Using the WHERE clause from the last question, do an UPDATE setting the 'email' column 
 --    to the new Verizon version using REPLACE(). Remember to use transactions when doing an UPDATE.
 
-begin;
-update users
-set email = replace(email, 'aol', 'verizon')
-where email like '%aol.com';
-commit;
+BEGIN;
+UPDATE users
+SET email = REPLACE(email, 'aol', 'verizon')
+WHERE email LIKE '%aol.com';
+COMMIT;
 
 -- 3. For more practice, let's say the CDs are being replaced by playlists. First, select all the 
 --    products that contain the word CD in them.
 
-select * from products where title like '% CD';
+SELECT * FROM products WHERE title LIKE '% CD';
 
 -- 4. Using the WHERE clause from the last question, do an UPDATE setting the 'title' column 
 --    to the new version substituting 'playlist' for CD. Remember to use transactions when doing an UPDATE.
 
-begin;
-update products
-set title = replace(title, ' CD', ' playlist')
-where title like '% CD';
-commit;
+BEGIN;
+UPDATE products
+SET title = REPLACE(title, ' CD', ' playlist')
+WHERE title LIKE '% CD';
+COMMIT;

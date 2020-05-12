@@ -1,4 +1,4 @@
--- EXERCISE SET #11: CREATE TABLES AND VIEWS 
+-- EXERCISE SET 601: Transactions and Inserts
 
 -----------
 -- TIPS: --
@@ -12,32 +12,31 @@
 -- WARM UPS: Type the following commands to build muscle memory. --
 -------------------------------------------------------------------
 
--- 1. [View]: CREATE VIEW gmailView AS
---            SELECT * FROM users WHERE email like '%gmail.com';
+-- 1. [Begin Transaction]: BEGIN;
 
--- 2. [Table]: CREATE TABLE vendor (
-			--    id SERIAL PRIMARY KEY,
-			--    name VARCHAR (MAX) NOT NULL,
-			-- );
+-- 2. [Insert]: INSERT INTO products VALUES (29, 'Fiction Book', 12, NOW(), null, '{Book}');           
 
+-- 3. [Save Transaction]: COMMIT; 
+
+-- 4. [Undo Transaction]: ROLLBACK;
 
 --------------------------------------------------------
 -- EXERCISES: Answer using the techniques from above. --
 --------------------------------------------------------
 
--- 1. Join the purchases and purchase_items tables. Do a group by to
---    find out how much money each user has spent in total.
+-- 1. Add yourself to the users table. You can leave the password and details blank (null).
 
--- 2. Store the joined table as a view.
+-- 2. Add a new row to the purchases table, using your user_id as a foreign key.
 
--- 3. Rewrite the groupby query using the view instead.
+-- 3. You can specify a subset of columns after INSERT INTO,  e.g. INSERT INTO users (id, email) VALUES (1, 'bob@gmail.com');
+--    Use this syntax to insert a new product into the products table.
 
--- 4. Create a new table 'coupons' with the follwing columns:
---    * id (serial, primary key)
---    * name (varchar (200))
---    * code (varchar (10), not null)
---    * percent (float32, not null)
+-- 4. Well-designed tables will auto-increment the id column. 
+--    Insert into the users table, but use the new syntax to leave off the id column
 
+----------------------------------------
+-- EXTRA CREDIT: If you finish early. --
+----------------------------------------
 
-
-
+-- 1. The CAST() function will convert values across different data types, e.g. CAST(price as int).
+--    Clean up the price column of the products table by converting the values to the type money.

@@ -1,4 +1,4 @@
--- EXERCISE SET 503: Modifying Tables
+-- EXERCISE SET 602: Modifying Tables
 
 -----------
 -- TIPS: --
